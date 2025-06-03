@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "517822928552",
+    "project_id": "rentrover-07",
+    "storage_bucket": "rentrover-07.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517822928552:android:425b9a4356f4965523949d",
+        "android_client_info": {
+          "package_name": "com.example.rentrover"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDey2oDAWsXJwwX23Nki8OC1oPJH5RWZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
