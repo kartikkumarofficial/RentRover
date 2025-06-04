@@ -1,8 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:rentrover/HomeScreen.dart';
-import 'package:rentrover/OnboardingScreen.dart';
+
 import 'package:rentrover/firebase_options.dart';
+import 'package:rentrover/presentation/pages/OnboardingScreen.dart';
 
 void main()async  {
   WidgetsFlutterBinding.ensureInitialized();
