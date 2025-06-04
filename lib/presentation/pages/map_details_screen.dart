@@ -20,7 +20,7 @@ class MapDetailsScreen extends StatelessWidget {
 
           ),
 
-          children:Text('this happens to be the map')),
+          children:),
 
     );
   }
