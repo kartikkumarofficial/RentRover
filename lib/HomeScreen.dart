@@ -11,13 +11,19 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   FirebaseFirestore db = FirebaseFirestore.instance;
-  void increment(){
+  void incrementuser(){//fake data for checkin
     final user = {
-      "firstname"= "steve",
-      "lastname"= "austin",
-      "born"= 0,
+      "firstname": "steve",
+      "lastname":"austin",
+      "born": 0,
     };
-    db.collection("users").add(user).then( (DocumentReference doc)=>print("user add with ID : ${doc.id}"));
+    db.collection("users").add(user).then((DocumentReference doc)=>print("user add with ID : ${doc.id}"));
+  }
+  @override
+  void initState() {
+    incrementuser();
+    // TODO: implement initState
+    super.initState();
   }
 
 
