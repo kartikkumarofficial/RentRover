@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/presentation/pages/car_details_screen.dart';
 
 
 class CarCard extends StatelessWidget {
@@ -11,10 +12,10 @@ class CarCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        // Navigator.push(
-        //     context,
-        //     MaterialPageRoute(builder: (context) => CardDetailsPage(car: car,))
-        // );
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CarDetailsScreen() )
+        );
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
