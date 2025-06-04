@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/presentation/pages/map_details_screen.dart';
 import 'package:rentrover/presentation/widgets/car_card.dart';
 import 'package:rentrover/presentation/widgets/more_card.dart';
 
@@ -59,21 +60,27 @@ class CarDetailsScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 20,),
                 Expanded(
-                  child: Container(
-                    height: 170,
-                    decoration: BoxDecoration(
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder:
+                      (context) => MapDetailsScreen(),));
+                    },
+                    child: Container(
+                      height: 170,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10,
+                                spreadRadius: 5
+                            )
+                          ]
+                      ),
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 10,
-                              spreadRadius: 5
-                          )
-                        ]
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset('assets/maps.png',fit: BoxFit.cover,),
+                        child: Image.asset('assets/maps.png',fit: BoxFit.cover,),
+                      ),
                     ),
                   ),
                 ),
