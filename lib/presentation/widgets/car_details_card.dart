@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/presentation/widgets/feature_icons.dart';
 
 
 Widget carDetailsCard({required Car car}) {

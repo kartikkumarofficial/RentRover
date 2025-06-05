@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/presentation/widgets/car_details_card.dart';
 
 class MapDetailsScreen extends StatelessWidget {
   const MapDetailsScreen({super.key});
@@ -38,8 +40,11 @@ class MapDetailsScreen extends StatelessWidget {
 
           ),
           Positioned(
+            bottom: 0,
+              left: 0,
+              right: 0,
 
-              child: )
+              child:carDetailsCard(car:Car(model: "Fortuner GR", distance: 870, fuelCapacity: 50, pricePerHour: 45), ))
         ],
       ),
 
