@@ -4,9 +4,42 @@ import 'package:rentrover/presentation/pages/map_details_screen.dart';
 import 'package:rentrover/presentation/widgets/car_card.dart';
 import 'package:rentrover/presentation/widgets/more_card.dart';
 
-class CarDetailsScreen extends StatelessWidget {
+class CarDetailsScreen extends StatefulWidget {
   final Car car;
   const CarDetailsScreen({super.key,required this.car});
+
+  @override
+  State<CarDetailsScreen> createState() => _CarDetailsScreenState();
+}
+
+class _CarDetailsScreenState extends State<CarDetailsScreen> with SingleTickerProviderStateMixin {
+
+  AnimationController? _controller;
+  Animation<double>? _animation;
+
+
+  @override
+  void initState() {
+    _controller = AnimationController(vsync: this,
+    duration: Duration(seconds: 3));
+
+
+    _animation = Tween<double>(begin: 1.0,end: 1.5).animate(_controller!)..addListener((){
+      setState(() {
+
+      });
+    });
+    _controller!.forward();
+
+
+    super.initState();
+  }
+  @override
+  void dispose() {
+    _controller?.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +59,7 @@ class CarDetailsScreen extends StatelessWidget {
 
       body:Column(
         children: [
-          CarCard(car : Car(model: car.model, distance: car.distance , fuelCapacity: car.fuelCapacity , pricePerHour: car.pricePerHour),),
+          CarCard(car : Car(model: widget.car.model, distance: widget.car.distance , fuelCapacity: widget.car.fuelCapacity , pricePerHour: widget.car.pricePerHour),),
           SizedBox(height: 20,),
           Padding(
             padding:  EdgeInsets.symmetric(horizontal: 20.0),
@@ -79,7 +112,10 @@ class CarDetailsScreen extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.asset('assets/maps.png',fit: BoxFit.cover,),
+                        child: Transform.scale(
+                          scale: _animation!.value,
+                            alignment: Alignment.center,
+                            child: Image.asset('assets/maps.png',fit: BoxFit.cover,)),
                       ),
                     ),
                   ),
@@ -96,19 +132,19 @@ class CarDetailsScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(18)
                     ),
-                    child: MoreCard(car: Car(model: car.model+ "-1", distance: car.distance+100 , fuelCapacity: car.fuelCapacity +100, pricePerHour: car.pricePerHour+10))),
+                    child: MoreCard(car: Car(model: widget.car.model+ "-1", distance: widget.car.distance+100 , fuelCapacity: widget.car.fuelCapacity +100, pricePerHour: widget.car.pricePerHour+10))),
                 Container(
                   margin: EdgeInsets.only(top: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(18)
                     ),
-                    child: MoreCard(car: Car(model: car.model+ "-2", distance: car.distance+200 , fuelCapacity: car.fuelCapacity +200, pricePerHour: car.pricePerHour+20),)),
+                    child: MoreCard(car: Car(model: widget.car.model+ "-2", distance: widget.car.distance+200 , fuelCapacity: widget.car.fuelCapacity +200, pricePerHour: widget.car.pricePerHour+20),)),
                 Container(
                   margin: EdgeInsets.only(top: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(18)
                     ),
-                    child: MoreCard(car: Car(model: car.model + "-3", distance: car.distance +300, fuelCapacity: car.fuelCapacity+300 , pricePerHour: car.pricePerHour+30),)),
+                    child: MoreCard(car: Car(model: widget.car.model + "-3", distance: widget.car.distance +300, fuelCapacity: widget.car.fuelCapacity+300 , pricePerHour: widget.car.pricePerHour+30),)),
 
               ],
             ),
