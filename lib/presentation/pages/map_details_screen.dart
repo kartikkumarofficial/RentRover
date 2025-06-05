@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/data/models/car.dart';
 import 'package:rentrover/presentation/widgets/car_details_card.dart';
 
 class MapDetailsScreen extends StatelessWidget {

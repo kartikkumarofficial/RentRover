@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/data/models/car.dart';
 import 'package:rentrover/domain/usecases/get_cars.dart';
 
 

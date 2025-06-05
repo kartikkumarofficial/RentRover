@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/data/models/car.dart';
 import 'package:rentrover/presentation/widgets/car_card.dart';
 
 class CarListScreen extends StatelessWidget {

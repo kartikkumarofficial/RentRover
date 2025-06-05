@@ -1,4 +1,4 @@
-import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/data/models/car.dart';
 
 abstract class CarState{}
 

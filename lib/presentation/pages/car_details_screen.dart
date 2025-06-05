@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/data/models/car.dart';
 import 'package:rentrover/presentation/pages/map_details_screen.dart';
 import 'package:rentrover/presentation/widgets/car_card.dart';
 import 'package:rentrover/presentation/widgets/more_card.dart';

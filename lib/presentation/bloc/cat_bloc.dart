@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:rentrover/data/models/Car.dart';
+import 'package:rentrover/data/models/car.dart';
 import 'package:rentrover/domain/usecases/get_cars.dart';
 
 import 'car_event.dart';
