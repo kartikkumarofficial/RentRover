@@ -8,19 +8,40 @@ class MapDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, icon: Padding(
+          padding:  EdgeInsets.all(8.0),
+          child: Icon(Icons.arrow_back,size:28,),
+        )),
+        backgroundColor: Colors.transparent,
       ),
-      body: FlutterMap(
-          options: MapOptions(
-            initialCenter: LatLng(20.5937, 78.9629),
-            initialZoom: 13,
+      body: Stack(
+        children: [
+          FlutterMap(
+              options: MapOptions(
+                // initialCenter: LatLng(20.5937, 78.9629),
+                initialCenter: LatLng(30.3165, 78.0322), //ddun
+                initialZoom: 13,
+              ),
 
-
+              children: [
+                TileLayer(
+                  urlTemplate:
+                  "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                  subdomains: ['a', 'b', 'c'],
+                  userAgentPackageName: 'com.example.rentrover',
+                ),
+              ],
 
           ),
+          Positioned(
 
-          children:),
+              child: )
+        ],
+      ),
 
     );
   }
