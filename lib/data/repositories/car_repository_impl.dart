@@ -12,7 +12,7 @@ class CarRepositoryImpl implements CarRepository {
 
   @override
   Future<List<Car>> fetchCars() {
-    return dataSource.GetCars();
+    return dataSource.getCars();
 
   }
 
