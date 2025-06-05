@@ -9,10 +9,10 @@ import 'package:rentrover/domain/usecases/get_cars.dart';
 
 class FirebaseCarDataSource{
   final FirebaseFirestore firestore;
-  FirebaseFirestore({required this.firestore});
+  FirebaseCarDataSource({required this.firestore});
 
   Future<List<Car>> GetCars() async {
-    var snapshot =  await firestore.collection('cars').get;
+    var snapshot =  await firestore.collection('cars').get();
     return snapshot.docs.map((doc)=> Car.FromMap(doc.data())).toList();
 
   }
