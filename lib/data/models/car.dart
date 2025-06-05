@@ -16,7 +16,7 @@ class Car{
       distance: map['distance'],
       fuelCapacity: map['fuelCapacity'],
       pricePerHour: map['pricePerHour'],
-    )
+    );
   }
 
 }
