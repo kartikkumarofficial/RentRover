@@ -8,7 +8,7 @@ class GetCars{
   GetCars(this.repository);
 
   Future<List<Car>> call() async{
-    return await repository.fetchCars();
+    return await repository.fetchCars() ;
   }
 
 }
