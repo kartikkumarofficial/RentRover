@@ -3,6 +3,8 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:rentrover/utils/constants.dart';
+
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -31,7 +33,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
+              'you can reconfigure this by running the FlutterFire CLI again.',
         );
       default:
         throw UnsupportedError(
@@ -41,46 +43,46 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCLCXj02HXseKJgG4dH8aDG9KwtgbCZStw',
-    appId: '1:517822928552:web:ecafadc5054dfae923949d',
-    messagingSenderId: '517822928552',
-    projectId: 'rentrover-07',
-    authDomain: 'rentrover-07.firebaseapp.com',
-    storageBucket: 'rentrover-07.firebasestorage.app',
+    apiKey: Secrets.webApiKey,
+    appId: Secrets.webAppId,
+    messagingSenderId: Secrets.messagingSenderId,
+    projectId: Secrets.projectId,
+    authDomain: Secrets.authDomain,
+    storageBucket: Secrets.storageBucket,
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCDey2oDAWsXJwwX23Nki8OC1oPJH5RWZI',
-    appId: '1:517822928552:android:425b9a4356f4965523949d',
-    messagingSenderId: '517822928552',
-    projectId: 'rentrover-07',
-    storageBucket: 'rentrover-07.firebasestorage.app',
+    apiKey: Secrets.androidApiKey,
+    appId: Secrets.androidAppId,
+    messagingSenderId: Secrets.messagingSenderId,
+    projectId: Secrets.projectId,
+    storageBucket: Secrets.storageBucket,
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBm5GXKe8dGy-1oTodip2hCdazTA8pENLQ',
-    appId: '1:517822928552:ios:4d495dc2e324932b23949d',
-    messagingSenderId: '517822928552',
-    projectId: 'rentrover-07',
-    storageBucket: 'rentrover-07.firebasestorage.app',
-    iosBundleId: 'com.example.rentrover',
+    apiKey: Secrets.iosApiKey,
+    appId: Secrets.iosAppId,
+    messagingSenderId: Secrets.messagingSenderId,
+    projectId: Secrets.projectId,
+    storageBucket: Secrets.storageBucket,
+    iosBundleId: Secrets.iosBundleId,
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBm5GXKe8dGy-1oTodip2hCdazTA8pENLQ',
-    appId: '1:517822928552:ios:4d495dc2e324932b23949d',
-    messagingSenderId: '517822928552',
-    projectId: 'rentrover-07',
-    storageBucket: 'rentrover-07.firebasestorage.app',
-    iosBundleId: 'com.example.rentrover',
+    apiKey: Secrets.iosApiKey,
+    appId: Secrets.iosAppId,
+    messagingSenderId: Secrets.messagingSenderId,
+    projectId: Secrets.projectId,
+    storageBucket: Secrets.storageBucket,
+    iosBundleId: Secrets.iosBundleId,
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyCLCXj02HXseKJgG4dH8aDG9KwtgbCZStw',
-    appId: '1:517822928552:web:aa4e801b70582d4023949d',
-    messagingSenderId: '517822928552',
-    projectId: 'rentrover-07',
-    authDomain: 'rentrover-07.firebaseapp.com',
-    storageBucket: 'rentrover-07.firebasestorage.app',
+    apiKey: Secrets.webApiKey,
+    appId: Secrets.windowsAppId,
+    messagingSenderId: Secrets.messagingSenderId,
+    projectId: Secrets.projectId,
+    authDomain: Secrets.authDomain,
+    storageBucket: Secrets.storageBucket,
   );
 }

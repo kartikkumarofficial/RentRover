@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rentrover/data/models/car.dart';
-import 'package:rentrover/presentation/pages/car_details_screen.dart';
+import 'package:rentrover/presentation/screens/car_details_screen.dart';
+
+
 
 
 class CarCard extends StatelessWidget {
@@ -67,3 +69,4 @@ class CarCard extends StatelessWidget {
     );
   }
 }
+
