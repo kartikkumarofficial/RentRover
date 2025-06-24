@@ -1,72 +1,98 @@
 import 'package:flutter/material.dart';
-import 'package:rentrover/data/models/car.dart';
+import 'package:rentrover/data/models/car_model.dart';
 import 'package:rentrover/presentation/screens/car_details_screen.dart';
 
-
-
-
 class CarCard extends StatelessWidget {
-  final Car car;
+  final CarModel car;
 
   const CarCard({super.key, required this.car});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CarDetailsScreen(car: car,) )
+          context,
+          MaterialPageRoute(
+            builder: (context) => CarDetailsScreen(car: car),
+          ),
         );
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-        padding: EdgeInsets.all(20),
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Color(0xffF3F3F3),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10,
-                  spreadRadius: 5
-              )
-            ]
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 12,
+              offset: Offset(0, 6),
+              spreadRadius: 4,
+            ),
+          ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset('assets/car_image.png', height: 120,),
-            Text(car.model, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-            SizedBox(height: 10,),
+
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                car.imageUrl,
+                height: 140,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+
+            Text(
+              car.name,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+
+            const SizedBox(height: 8),
+
+
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Row(
-                      children: [
-                        Image.asset('assets/gps.png'),
-                        Text(' ${car.distance.toStringAsFixed(0)}km')
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Image.asset('assets/pump.png'),
-                        Text(' ${car.fuelCapacity.toStringAsFixed(0)}L')
-                      ],
-                    ),
-                  ],
-                ),
+                const Icon(Icons.location_on, color: Colors.deepPurple, size: 18),
+                const SizedBox(width: 4),
                 Text(
-                  '\$${car.pricePerHour.toStringAsFixed(2)}/h',
-                  style: TextStyle(fontSize: 16),
-                )
+                  car.location,
+                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                ),
+                const SizedBox(width: 16),
+                const Icon(Icons.local_gas_station, color: Colors.green, size: 18),
+                const SizedBox(width: 4),
+                Text(
+                  '${car.fuelCapacity} L',
+                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                ),
               ],
-            )
+            ),
+
+
+
+
+            Text(
+              '₹${car.pricePerDay.toStringAsFixed(0)}/day',
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.deepPurple,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 }
-

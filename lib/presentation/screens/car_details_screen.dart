@@ -1,43 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:rentrover/data/models/car.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:rentrover/data/models/car_model.dart';
 import 'package:rentrover/presentation/screens/map_details_screen.dart';
 import 'package:rentrover/presentation/widgets/car_card.dart';
 import 'package:rentrover/presentation/widgets/more_card.dart';
 
 class CarDetailsScreen extends StatefulWidget {
-  final Car car;
-  const CarDetailsScreen({super.key,required this.car});
+  final CarModel car;
+
+  const CarDetailsScreen({super.key, required this.car});
 
   @override
   State<CarDetailsScreen> createState() => _CarDetailsScreenState();
 }
 
 class _CarDetailsScreenState extends State<CarDetailsScreen> with SingleTickerProviderStateMixin {
-
   AnimationController? _controller;
   Animation<double>? _animation;
 
-
   @override
   void initState() {
-    _controller = AnimationController(vsync: this,
-    duration: Duration(seconds: 3));
-
-
-    _animation = Tween<double>(begin: 1.0,end: 1.5).animate(_controller!)..addListener((){
-      setState(() {
-
-      });
-    });
-    _controller!.forward();
-
-
     super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    );
+
+    _animation = Tween<double>(begin: 1.0, end: 1.5).animate(_controller!)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    _controller!.forward();
   }
+
   @override
   void dispose() {
     _controller?.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -46,112 +47,129 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> with SingleTickerPr
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(width: 60,),
-            Icon(Icons.info_outline),
-            Text('Information',style: TextStyle(),),
-
-
+             SizedBox(width: Get.width*0.11),
+            const Icon(Icons.info_outline),
+            const SizedBox(width: 8),
+            Text('Information',style: GoogleFonts.playfairDisplay(),),
           ],
         ),
       ),
-
-      body:Column(
-        children: [
-          CarCard(car : Car(model: widget.car.model, distance: widget.car.distance , fuelCapacity: widget.car.fuelCapacity , pricePerHour: widget.car.pricePerHour),),
-          SizedBox(height: 20,),
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
-              children: [
-                Expanded(
-
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Color(0xffF3F3F3),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [ BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 10,
-                        spreadRadius: 5,
-                      ),]
-                    ),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 40,
-                          backgroundImage: AssetImage('assets/user.png'),
-                        ),
-                        SizedBox(height: 10,),
-                        Text('Jane Cooper',style: TextStyle(fontWeight: FontWeight.bold),),
-                        Text('\$4,253',style: TextStyle(color: Colors.grey),),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(width: 20,),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: (){
-                      Navigator.of(context).push(MaterialPageRoute(builder:
-                      (context) => MapDetailsScreen(),));
-                    },
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CarCard(car: widget.car),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                children: [
+                  Expanded(
                     child: Container(
-                      height: 170,
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 10,
-                                spreadRadius: 5
-                            )
-                          ]
-                      ),
-                      child: ClipRRect(
+                        color: const Color(0xffF3F3F3),
                         borderRadius: BorderRadius.circular(20),
-                        child: Transform.scale(
-                          scale: _animation!.value,
-                            alignment: Alignment.center,
-                            child: Image.asset('assets/maps.png',fit: BoxFit.cover,)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10,
+                            spreadRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: const [
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: AssetImage('assets/user.png'),
+                          ),
+                          SizedBox(height: 10),
+                          Text('Jane Cooper', style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text('\$4,253', style: TextStyle(color: Colors.grey)),
+                        ],
                       ),
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => MapDetailsScreen(car: widget.car)),
+                        );
+                      },
+                      child: Container(
+                        height: 170,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10,
+                              spreadRadius: 5,
+                            )
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Transform.scale(
+                            scale: _animation!.value,
+                            alignment: Alignment.center,
+                            child: Image.asset('assets/maps.png', fit: BoxFit.cover),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18)
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  MoreCard(
+                    car: CarModel(
+                      id: "1",
+                      name: "${widget.car.name} -1",
+                      description: widget.car.description,
+                      fuelCapacity: widget.car.fuelCapacity,
+                      imageUrl: widget.car.imageUrl,
+                      pricePerDay: widget.car.pricePerDay + 500,
+                      location: widget.car.location,
                     ),
-                    child: MoreCard(car: Car(model: widget.car.model+ "-1", distance: widget.car.distance+100 , fuelCapacity: widget.car.fuelCapacity +100, pricePerHour: widget.car.pricePerHour+10))),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18)
+                  ),
+                  const SizedBox(height: 10),
+                  MoreCard(
+                    car: CarModel(
+                      id: "2",
+                      name: "${widget.car.name} -2",
+                      description: widget.car.description,
+                      fuelCapacity: widget.car.fuelCapacity,
+                      imageUrl: widget.car.imageUrl,
+                      pricePerDay: widget.car.pricePerDay + 1000,
+                      location: widget.car.location,
                     ),
-                    child: MoreCard(car: Car(model: widget.car.model+ "-2", distance: widget.car.distance+200 , fuelCapacity: widget.car.fuelCapacity +200, pricePerHour: widget.car.pricePerHour+20),)),
-                Container(
-                  margin: EdgeInsets.only(top: 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18)
+                  ),
+                  const SizedBox(height: 10),
+                  MoreCard(
+                    car: CarModel(
+                      id: "3",
+                      name: "${widget.car.name} -3",
+                      description: widget.car.description,
+                      fuelCapacity: widget.car.fuelCapacity,
+                      imageUrl: widget.car.imageUrl,
+                      pricePerDay: widget.car.pricePerDay + 1500,
+                      location: widget.car.location,
                     ),
-                    child: MoreCard(car: Car(model: widget.car.model + "-3", distance: widget.car.distance +300, fuelCapacity: widget.car.fuelCapacity+300 , pricePerHour: widget.car.pricePerHour+30),)),
-
-              ],
-            ),
-          )
-
-
-        ],
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

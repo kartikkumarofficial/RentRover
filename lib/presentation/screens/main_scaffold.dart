@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rentrover/presentation/screens/car_list_screen.dart';
+
 import 'package:rentrover/presentation/screens/profile/profile_screen.dart';
 
 import '../../controllers/nav_controller.dart';
@@ -12,7 +14,8 @@ class MainScaffold extends StatelessWidget {
   final NavController navController = Get.put(NavController());
 
   final List<Widget> screens = [
-    ProfileScreen(),
+
+    CarListScreen(),
     ProfileScreen(),
     ProfileScreen(),
     ProfileScreen(),
