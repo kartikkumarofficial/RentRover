@@ -40,12 +40,13 @@ class EditAccountPage extends StatelessWidget {
                 onTap: accountController.pickImage,
                 child: CircleAvatar(
                   radius: Get.width * 0.22,
-                  backgroundImage: accountController.selectedImage.value != null
+                   backgroundImage: accountController.selectedImage.value != null
                       ? FileImage(accountController.selectedImage.value!)
-                      : NetworkImage(
-                    accountController.userController.profileImageUrl.value,
-                  ) as ImageProvider,
+                      : accountController.userController.profileImageUrl.value.isNotEmpty
+                      ? NetworkImage(accountController.userController.profileImageUrl.value)
+                      : const AssetImage('assets/default_profile.png') as ImageProvider,
                 ),
+
               ),
               SizedBox(height: 24),
               buildTextField(
