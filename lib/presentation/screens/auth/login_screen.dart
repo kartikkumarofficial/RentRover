@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
             GestureDetector(
               onTap:()=>Get.to(null), // quick access
               child: Text(
-                    'DashSocial',
+                    'RentRover',
                     style: GoogleFonts.pacifico(fontSize: 40, color: Colors.white),
                   ),
             ),

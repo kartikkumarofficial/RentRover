@@ -2,6 +2,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:rentrover/presentation/screens/auth/login_screen.dart';
+import 'package:rentrover/presentation/screens/main_scaffold.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthController extends GetxController {
@@ -91,7 +92,7 @@ class AuthController extends GetxController {
           colorText: Colors.white,
           snackPosition: SnackPosition.BOTTOM,
         );
-        Get.offAll(LoginPage());//todo mainscaffold here
+        Get.offAll(MainScaffold());
       } else {
         Get.snackbar(
           'Login Failed',
