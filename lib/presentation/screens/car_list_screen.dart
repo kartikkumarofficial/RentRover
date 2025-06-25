@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rentrover/controllers/car_controller.dart';
 import 'package:rentrover/controllers/user_controller.dart';
 import 'package:rentrover/presentation/widgets/car_card.dart';
@@ -35,8 +36,8 @@ class CarListScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hi, ${username.isNotEmpty ? username :username} 👋', // fixx this
-                        style: const TextStyle(
+                        'Hi, Kartik Kumar 👋', // fixx this
+                        style:GoogleFonts.inter(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.black87,

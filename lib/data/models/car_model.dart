@@ -8,6 +8,8 @@ class CarModel {
   final double fuelCapacity;
   final String transmission;
   final int seats;
+  final double latitude;   // ✅ New
+  final double longitude;  // ✅ New
 
   CarModel({
     required this.id,
@@ -19,6 +21,8 @@ class CarModel {
     required this.fuelCapacity,
     required this.transmission,
     required this.seats,
+    required this.latitude,
+    required this.longitude,
   });
 
   factory CarModel.fromMap(Map<String, dynamic> map) {
@@ -32,6 +36,11 @@ class CarModel {
       fuelCapacity: (map['fuelCapacity'] as num).toDouble(),
       transmission: map['transmission'] ?? 'Auto',
       seats: map['seats'] ?? 5,
+
+
+      latitude: (map['latitude'] != null) ? (map['latitude'] as num).toDouble() : 30.3165,
+      longitude: (map['longitude'] != null) ? (map['longitude'] as num).toDouble() : 78.0322,
     );
   }
+
 }

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../controllers/editaccount_controller.dart';
 
 class EditAccountPage extends StatelessWidget {
@@ -11,20 +10,19 @@ class EditAccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        backgroundColor: Colors.white,
+        elevation: 1,
         leading: IconButton(
-          icon: Icon(CupertinoIcons.back, color: Colors.white),
+          icon: const Icon(CupertinoIcons.back, color: Colors.black),
           onPressed: () => Get.back(result: true),
         ),
         title: Text(
           'Edit Account',
           style: GoogleFonts.playfairDisplay(
             fontSize: 22,
-            // fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
         centerTitle: true,
@@ -35,30 +33,29 @@ class EditAccountPage extends StatelessWidget {
           child: Obx(() => Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               GestureDetector(
                 onTap: accountController.pickImage,
                 child: CircleAvatar(
                   radius: Get.width * 0.22,
-                   backgroundImage: accountController.selectedImage.value != null
+                  backgroundImage: accountController.selectedImage.value != null
                       ? FileImage(accountController.selectedImage.value!)
                       : accountController.userController.profileImageUrl.value.isNotEmpty
                       ? NetworkImage(accountController.userController.profileImageUrl.value)
                       : const AssetImage('assets/default_profile.png') as ImageProvider,
                 ),
-
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               buildTextField(
                 label: 'Name',
                 controller: accountController.nameController,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               buildTextField(
                 label: 'Email',
                 controller: accountController.emailController,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               SizedBox(
                 width: double.infinity,
                 height: 50,
@@ -73,7 +70,7 @@ class EditAccountPage extends StatelessWidget {
                       ? null
                       : accountController.saveChanges,
                   child: accountController.isLoading.value
-                      ? CircularProgressIndicator(
+                      ? const CircularProgressIndicator(
                       color: Colors.white, strokeWidth: 2.5)
                       : Text(
                     'Save Changes',
@@ -99,19 +96,19 @@ class EditAccountPage extends StatelessWidget {
     return TextField(
       controller: controller,
       style: GoogleFonts.barlow(
-        color: Colors.white,
+        color: Colors.black,
         fontSize: 16,
       ),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: GoogleFonts.barlow(
-          color: Colors.grey[400],
+          color: Colors.grey[700],
           fontSize: 15,
         ),
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.deepPurpleAccent),
         ),
       ),

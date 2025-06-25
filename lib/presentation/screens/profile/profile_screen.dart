@@ -1,13 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentrover/controllers/theme_controller.dart';
 import 'package:rentrover/presentation/screens/profile/edit_accountdetails_screen.dart';
-
 import '../../../controllers/user_controller.dart';
 import '../../widgets/profile_tile.dart';
-
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
@@ -18,7 +15,6 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final ThemeController themeController = Get.put(ThemeController());
-
   final UserController userController = Get.find<UserController>();
 
   @override
@@ -27,142 +23,97 @@ class _ProfileScreenState extends State<ProfileScreen> {
     userController.fetchUserProfile();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: RefreshIndicator(
-        onRefresh:
-          userController.fetchUserProfile
-        ,
+        onRefresh: userController.fetchUserProfile,
         child: Stack(
           children: [
-
-            // Positioned(
-            //   right: 10,
-            //   top: 30,
-            //   child: IconButton(
-            //     icon:   Icon(Icons.edit, color: Colors.white),
-            //     onPressed: () async {
-            //       final result = await Get.to(() => EditAccountPage());
-            //       if (result == true) {
-            //         userController.fetchUserProfile();
-            //       }
-            //     },
-            //
-            //   ),
-            // ),
             Obx(() => userController.isLoading.value
-                ?   Center(child: CircularProgressIndicator())
+                ? Center(child: CircularProgressIndicator())
                 : ListView(
               children: [
-                  SizedBox(height: 45),
-
+                const SizedBox(height: 45),
                 Center(
                   child: CircleAvatar(
                     radius: Get.width * 0.17,
-                    backgroundImage: userController.profileImageUrl.value.isNotEmpty
+                    backgroundImage:
+                    userController.profileImageUrl.value.isNotEmpty
                         ? NetworkImage(userController.profileImageUrl.value)
                         : const AssetImage('assets/default_profile.png') as ImageProvider,
                   ),
                 ),
-
-                SizedBox(height: 16),
-
-
+                const SizedBox(height: 16),
                 Center(
                   child: Text(
                     userController.userName.value,
                     style: GoogleFonts.playfairDisplay(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),
-                  SizedBox(height: 4),
-
+                const SizedBox(height: 4),
                 Center(
                   child: Text(
                     userController.email.value,
-                    style: GoogleFonts.barlow(color: Colors.grey[400]),
+                    style: GoogleFonts.barlow(color: Colors.grey[700]),
                   ),
                 ),
-                  SizedBox(height: 32),
-
-
-                  SizedBox(height: 32),
-
-
-                  Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: Get.width*0.02),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        //for future twitter implementation
-                    //     Text("Connected Platforms",
-                    //       style:
-                    //       TextStyle(color: Colors.white, fontSize: 16)),
-                    //
-                    // SizedBox(height: 12),
-                    //               Row(
-                    // children: [
-                    //    PlatformIcon(Icons.camera_alt, "Instagram", true),
-                    //    PlatformIcon(Icons.message, "Twitter", false),
-                    // ],
-                    //               ),
-                    SizedBox(height: 32),
-
-
-                                  ProfileTile(
-                                    onTap: () async {
-                                      final result = await Get.to(() => EditAccountPage());
-                                      if (result == true) {
-                                        userController.fetchUserProfile();
-                                      }},
-                    icon: Icons.settings,
-                    label: "Edit Account Details",
-                                  ),
-                                  Obx(() => ProfileTile(
-                    icon: Icons.brightness_6,
-                    label: themeController.isDarkMode.value
-                        ? "Switch to Light Mode"
-                        : "Switch to Dark Mode",
-                    onTap: themeController.toggleTheme,
-                                  )),
-                                  ProfileTile(
-                    icon: Icons.lock,
-                    label: "Security",
-                    onTap: () {},
-                                  ),
-                      ],
-                    ),
+                 SizedBox(height: Get.height*0.2),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 32),
+                      ProfileTile(
+                        onTap: () async {
+                          final result = await Get.to(() => EditAccountPage());
+                          if (result == true) {
+                            userController.fetchUserProfile();
+                          }
+                        },
+                        icon: Icons.settings,
+                        label: "Edit Account Details",
+                      ),
+                      Obx(() => ProfileTile(
+                        icon: Icons.brightness_6,
+                        label: themeController.isDarkMode.value
+                            ? "Switch to Light Mode"
+                            : "Switch to Dark Mode",
+                        onTap: themeController.toggleTheme,
+                      )),
+                      ProfileTile(
+                        icon: Icons.lock,
+                        label: "Security",
+                        onTap: () {},
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 24),
-
-               //logout
+                ),
+                const SizedBox(height: 24),
                 TextButton.icon(
                   onPressed: () {
                     userController.logout();
                   },
-                  icon:   Icon(Icons.logout,
-                      color: Colors.redAccent),
-                  label:   Text(
+                  icon: const Icon(Icons.logout, color: Colors.redAccent),
+                  label: const Text(
                     'Log Out',
                     style: TextStyle(color: Colors.redAccent),
                   ),
                 ),
-                  SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Center(
                   child: Text(
                     "v1.0.0 • RentRover",
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: TextStyle(color: Colors.grey[500]),
                   ),
                 ),
-                  SizedBox(height: 24),
+                const SizedBox(height: 24),
               ],
             )),
           ],

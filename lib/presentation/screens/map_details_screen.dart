@@ -30,8 +30,8 @@ class MapDetailsScreen extends StatelessWidget {
         children: [
           FlutterMap(
             options: MapOptions(
-              initialCenter: LatLng(30.3165, 78.0322), //dehradun
-              initialZoom: 13,
+              initialCenter: LatLng(car.latitude, car.longitude),
+              initialZoom: 14,
             ),
             children: [
               TileLayer(
@@ -39,8 +39,19 @@ class MapDetailsScreen extends StatelessWidget {
                 subdomains: ['a', 'b', 'c'],
                 userAgentPackageName: 'com.example.rentrover',
               ),
+              MarkerLayer(
+                markers: [
+                  Marker(
+                    point: LatLng(car.latitude, car.longitude),
+                    width: 40,
+                    height: 40,
+                    child: const Icon(Icons.location_pin, color: Colors.red, size: 40),
+                  )
+                ],
+              ),
             ],
           ),
+
           Positioned(
             bottom: 0,
             left: 0,
