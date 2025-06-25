@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentrover/data/models/car_model.dart';
+import 'package:rentrover/presentation/screens/booking_screen.dart';
 import 'package:rentrover/presentation/widgets/feature_icons.dart';
 
 Widget carDetailsCard({required CarModel car}) {
@@ -122,7 +123,7 @@ Widget carDetailsCard({required CarModel car}) {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                    //todo implement booking logic
+                        Get.to(BookingPage(carId: car.id));
 
                       },
                       style: ElevatedButton.styleFrom(
