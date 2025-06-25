@@ -1,16 +1,10 @@
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentrover/controllers/auth_controller.dart';
 import 'package:rentrover/presentation/widgets/text_field_box.dart';
 
-
-
-
 class SignUpPage extends StatefulWidget {
-
   SignUpPage({super.key});
 
   @override
@@ -19,20 +13,22 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   final AuthController authController = Get.find();
 
   @override
   void dispose() {
-
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(backgroundColor: Colors.black),
+      backgroundColor: Colors.white, // Light theme background
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -46,7 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   style: GoogleFonts.poppins(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -64,7 +60,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(height: 20),
-
                 TextFieldBox(
                   hint: 'Email',
                   icon: Icons.email,
@@ -73,7 +68,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     if (value == null || value.trim().isEmpty) {
                       return 'Email is required';
                     }
-                    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                    final emailRegex =
+                    RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
                     if (!emailRegex.hasMatch(value.trim())) {
                       return 'Enter a valid email';
                     }
@@ -81,7 +77,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(height: 20),
-
                 TextFieldBox(
                   hint: 'Password',
                   icon: Icons.lock,
@@ -97,7 +92,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(height: 20),
-
                 TextFieldBox(
                   hint: 'Confirm Password',
                   icon: Icons.lock_outline,
@@ -106,35 +100,37 @@ class _SignUpPageState extends State<SignUpPage> {
                   validator: (value) {
                     if (value == null || value.trim().isEmpty) {
                       return 'Please confirm your password';
-                    } else if (value.trim() != authController.passwordController.text.trim()) {
+                    } else if (value.trim() !=
+                        authController.passwordController.text.trim()) {
                       return 'Passwords do not match';
                     }
                     return null;
                   },
                 ),
-
                 const SizedBox(height: 30),
-                Obx(()=>SizedBox(
+                Obx(() => SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 15),
                     ),
-                    onPressed:
-                      authController.isLoading.value?null:(){
-                        FocusScope.of(context).unfocus();
-                        if(formKey.currentState!.validate()){
-                          authController.signUp();
-    }
-
-
-
+                    onPressed: authController.isLoading.value
+                        ? null
+                        : () {
+                      FocusScope.of(context).unfocus();
+                      if (formKey.currentState!.validate()) {
+                        authController.signUp();
+                      }
                     },
-                    child: authController.isLoading.value?CircularProgressIndicator(color: Colors.white,):  Text('Sign Up'),
+                    child: authController.isLoading.value
+                        ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                        : const Text('Sign Up'),
                   ),
-                ),),
+                )),
               ],
             ),
           ),

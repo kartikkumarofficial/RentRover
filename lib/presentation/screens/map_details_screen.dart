@@ -30,7 +30,7 @@ class MapDetailsScreen extends StatelessWidget {
         children: [
           FlutterMap(
             options: MapOptions(
-              initialCenter: LatLng(30.3165, 78.0322), // Change if needed
+              initialCenter: LatLng(30.3165, 78.0322), //dehradun
               initialZoom: 13,
             ),
             children: [

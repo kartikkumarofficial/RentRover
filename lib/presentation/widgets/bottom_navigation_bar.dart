@@ -13,21 +13,17 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: const Color(0xFF1E1E1E),
+      backgroundColor: Colors.white,
       currentIndex: navController.selectedIndex.value,
       onTap: navController.changeTab,
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: Colors.deepPurpleAccent,
-      unselectedItemColor: Colors.grey[600],
+      selectedItemColor: Colors.deepPurple,
+      unselectedItemColor: Colors.grey[800],
       selectedFontSize: 14,
       unselectedFontSize: 12,
       iconSize: 28,
-      elevation: 8,
+      elevation: 4, // Slight elevation for subtle shadow
       items: const [
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.home),
-        //   label: 'Home',
-        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.bar_chart),
           label: 'Home',
@@ -37,7 +33,7 @@ class BottomNavBar extends StatelessWidget {
           label: 'Bookings',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.calendar_today),
+          icon: Icon(Icons.map),
           label: 'Map',
         ),
         BottomNavigationBarItem(
