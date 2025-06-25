@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rentrover/controllers/car_controller.dart';
 import 'package:rentrover/data/models/car_model.dart';
 import 'package:rentrover/presentation/screens/map_details_screen.dart';
 import 'package:rentrover/presentation/widgets/car_card.dart';
@@ -18,6 +19,7 @@ class CarDetailsScreen extends StatefulWidget {
 class _CarDetailsScreenState extends State<CarDetailsScreen> with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _animation;
+
 
   @override
   void initState() {
@@ -56,6 +58,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> with SingleTickerPr
         ),
       ),
       body: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             CarCard(car: widget.car),
@@ -125,49 +128,7 @@ class _CarDetailsScreenState extends State<CarDetailsScreen> with SingleTickerPr
                 ],
               ),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  MoreCard(
-                    car: CarModel(
-                      id: "1",
-                      name: "${widget.car.name} -1",
-                      description: widget.car.description,
-                      fuelCapacity: widget.car.fuelCapacity,
-                      imageUrl: widget.car.imageUrl,
-                      pricePerDay: widget.car.pricePerDay + 500,
-                      location: widget.car.location,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  MoreCard(
-                    car: CarModel(
-                      id: "2",
-                      name: "${widget.car.name} -2",
-                      description: widget.car.description,
-                      fuelCapacity: widget.car.fuelCapacity,
-                      imageUrl: widget.car.imageUrl,
-                      pricePerDay: widget.car.pricePerDay + 1000,
-                      location: widget.car.location,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  MoreCard(
-                    car: CarModel(
-                      id: "3",
-                      name: "${widget.car.name} -3",
-                      description: widget.car.description,
-                      fuelCapacity: widget.car.fuelCapacity,
-                      imageUrl: widget.car.imageUrl,
-                      pricePerDay: widget.car.pricePerDay + 1500,
-                      location: widget.car.location,
-                    ),
-                  ),
-                ],
-              ),
-            )
+
           ],
         ),
       ),

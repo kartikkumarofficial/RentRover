@@ -41,7 +41,7 @@ class CarCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: Image.network(
                 car.imageUrl,
-                height: 140,
+                height: 130,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -50,46 +50,91 @@ class CarCard extends StatelessWidget {
             const SizedBox(height: 12),
 
 
-            Text(
-              car.name,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-
-            const SizedBox(height: 8),
-
-
-            Row(
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Icon(Icons.location_on, color: Colors.deepPurple, size: 18),
-                const SizedBox(width: 4),
                 Text(
-                  car.location,
-                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                  car.name,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-                const SizedBox(width: 16),
-                const Icon(Icons.local_gas_station, color: Colors.green, size: 18),
-                const SizedBox(width: 4),
-                Text(
-                  '${car.fuelCapacity} L',
-                  style: const TextStyle(fontSize: 14, color: Colors.black54),
+                Text(textAlign: TextAlign.end,
+                  '₹${car.pricePerDay.toStringAsFixed(0)}/day',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.deepPurpleAccent,
+                  ),
                 ),
               ],
             ),
 
+            // const SizedBox(height: 8),
+
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.location_on, color: Colors.green, size: 18),
+                      const SizedBox(width: 4),
+                      Flexible(
+                        child: Text(
+                          car.location,
+                          style: const TextStyle(fontSize: 13, color: Colors.black54),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.local_gas_station, color: Colors.red, size: 18),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${car.fuelCapacity} L',
+                        style: const TextStyle(fontSize: 13, color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.settings, color: Colors.blueAccent, size: 18),
+                      const SizedBox(width: 4),
+                      Text(
+                        car.transmission,
+                        style: const TextStyle(fontSize: 13, color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: [
+                      const Icon(Icons.event_seat, color: Colors.brown, size: 18),
+                      const SizedBox(width: 4),
+                      Text(
+                        '${car.seats} Seater',
+                        style: const TextStyle(fontSize: 13, color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
 
 
 
-            Text(
-              '₹${car.pricePerDay.toStringAsFixed(0)}/day',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.deepPurple,
-              ),
-            ),
+
+
+
           ],
         ),
       ),
