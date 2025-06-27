@@ -8,8 +8,8 @@ class CarModel {
   final double fuelCapacity;
   final String transmission;
   final int seats;
-  final double latitude;   // ✅ New
-  final double longitude;  // ✅ New
+  final double latitude;
+  final double longitude;
 
   CarModel({
     required this.id,
