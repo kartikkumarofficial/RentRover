@@ -37,7 +37,7 @@ class EditAccountController extends GetxController {
       if (selectedImage.value != null) {
         final uploadedUrl = await CloudinaryService.uploadImage(selectedImage.value!);
         if (uploadedUrl != null) {
-          imageUrl = uploadedUrl;
+          imageUrl = uploadedUrl; 
         } else {
           Get.snackbar('Error', 'Image upload failed',colorText: Colors.white);
           return;
