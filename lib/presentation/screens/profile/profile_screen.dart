@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 32),
+                      // const SizedBox(height: ),
                       ProfileTile(
                         onTap: () async {
                           final result = await Get.to(() => EditAccountPage());

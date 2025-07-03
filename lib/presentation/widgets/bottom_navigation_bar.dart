@@ -32,10 +32,7 @@ class BottomNavBar extends StatelessWidget {
           icon: Icon(Icons.calendar_today),
           label: 'Bookings',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          label: 'Map',
-        ),
+
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profile',
