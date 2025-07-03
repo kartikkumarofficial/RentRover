@@ -183,8 +183,3 @@ This project is licensed under the MIT License.
 
 ```
 
----
-
-✅ Done!  
-If you’d like help customizing further or adding badges, just let me know.
-```
