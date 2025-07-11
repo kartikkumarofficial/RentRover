@@ -1,4 +1,5 @@
-  import 'package:flutter/material.dart';
+  import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
   import 'package:get/get.dart';
   import 'package:google_fonts/google_fonts.dart';
   import 'package:rentrover/controllers/car_controller.dart';
@@ -50,154 +51,94 @@
     Widget build(BuildContext context) {
       return Scaffold(
         
-        body: SafeArea(
-          child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // SizedBox(width: Get.width*0.11),
-                    const Icon(Icons.info_outline),
-                    const SizedBox(width: 8),
-                    Text('Information',style: GoogleFonts.playfairDisplay(fontSize: 25),),
+        body: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              SizedBox(height: Get.height*0.03,),
+              Row(
+
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: Get.width*0.03,right: Get.width*0.13),
+                    child: IconButton(onPressed: (){Get.back();}, icon: Icon(CupertinoIcons.arrow_left)),
+                  ),
+
+                  // SizedBox(width: Get.width*0.11),
+                  const Icon(Icons.info_outline),
+                  const SizedBox(width: 8),
+                  Text('Information',style: GoogleFonts.playfairDisplay(fontSize: 25),),
+                ],
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(18),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 12,
+                      offset: Offset(0, 6),
+                      spreadRadius: 4,
+                    ),
                   ],
                 ),
-                Container(
-                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(18),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 12,
-                        offset: Offset(0, 6),
-                        spreadRadius: 4,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(
+                        widget.car.imageUrl,
+                        height: 130,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-          
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(
-                          widget.car.imageUrl,
-                          height: 130,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
+                    ),
+
+                    const SizedBox(height: 12),
+
+
+                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          widget.car.name,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-          
-                      const SizedBox(height: 12),
-          
-          
-                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            widget.car.name,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        Text(textAlign: TextAlign.end,
+                          '₹${widget.car.pricePerDay.toStringAsFixed(0)}/day',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black38,
                           ),
-                          Text(textAlign: TextAlign.end,
-                            '₹${widget.car.pricePerDay.toStringAsFixed(0)}/day',
-                            style: const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                          ),
-                        ],
-                      ),
-          
-          
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+
+
+                  ],
                 ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: const Color(0xffF3F3F3),
-                            borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black12,
-                                blurRadius: 10,
-                                spreadRadius: 5,
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: const [
-                              CircleAvatar(
-                                radius: 40,
-                                backgroundImage: AssetImage('assets/user.png'),
-                              ),
-                              SizedBox(height: 10),
-                              Text('Jane Cooper', style: TextStyle(fontWeight: FontWeight.bold)),
-                              Text('\$4,253', style: TextStyle(color: Colors.grey)),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(builder: (context) => MapDetailsScreen(car: widget.car)),
-                            );
-                          },
-                          child: Container(
-                            height: 170,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 10,
-                                  spreadRadius: 5,
-                                )
-                              ],
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Transform.scale(
-                                scale: _animation!.value,
-                                alignment: Alignment.center,
-                                child: Image.asset('assets/maps.png', fit: BoxFit.cover),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Add this inside your build method, below the existing Row (with user + map)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(16),
+              ),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           color: const Color(0xffF3F3F3),
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: const [
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
                             BoxShadow(
                               color: Colors.black12,
                               blurRadius: 10,
@@ -206,29 +147,102 @@
                           ],
                         ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Description',
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          children: const [
+                            CircleAvatar(
+                              radius: 40,
+                              backgroundImage: AssetImage('assets/user.png'),
                             ),
-                            const SizedBox(height: 8),
-                            Text(
-                              widget.car.description,
-                              style: const TextStyle(fontSize: 14, color: Colors.black87),
-                            ),
+                            SizedBox(height: 10),
+                            Text('Jane Cooper', style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text('\$4,253', style: TextStyle(color: Colors.grey)),
                           ],
                         ),
                       ),
-          
-                      const SizedBox(height: 20),
-          
-          
-          
-          
-                      Wrap(
-                        crossAxisAlignment:WrapCrossAlignment.end,
-                        spacing: 20,
+                    ),
+                    const SizedBox(width: 20),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => MapDetailsScreen(car: widget.car)),
+                          );
+                        },
+                        child: Container(
+                          height: 170,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10,
+                                spreadRadius: 5,
+                              )
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Transform.scale(
+                              scale: _animation!.value,
+                              alignment: Alignment.center,
+                              child: Image.asset('assets/maps.png', fit: BoxFit.cover),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Add this inside your build method, below the existing Row (with user + map)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width:Get.width*0.9,
+
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+
+                        color: const Color(0xffF3F3F3),
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: const [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10,
+                            spreadRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Description',
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            widget.car.description,
+                            style: const TextStyle(fontSize: 14, color: Colors.black87),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+
+
+
+                    Container(
+                      width: Get.width*0.9,
+                      child: Wrap(
+
+                        crossAxisAlignment:WrapCrossAlignment.end
+                        ,
+                        spacing: 22,
                         runSpacing: 12,
                         children: [
                           _featureTile(Icons.settings, "Transmission", widget.car.transmission),
@@ -239,14 +253,14 @@
                           _featureTile(Icons.currency_rupee, "Per Day", "₹${widget.car.pricePerDay.toStringAsFixed(0)}"),
                         ],
                       ),
-                      SizedBox(height:Get.height*0.11),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height:Get.height*0.11),
+                  ],
                 ),
-          
-          
-              ],
-            ),
+              ),
+
+
+            ],
           ),
         ),
         floatingActionButton: Container(
@@ -277,7 +291,7 @@
 
   Widget _featureTile(IconData icon, String label, String value) {
     return Container(
-      width: Get.width * 0.4,
+      width: Get.width * 0.42,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: const Color(0xffF9F9F9),
