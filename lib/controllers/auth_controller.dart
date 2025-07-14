@@ -12,7 +12,6 @@ class AuthController extends GetxController {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final isLoading = false.obs;
-  //signup fun
 
   Future<void> signUp() async {
     final name = nameController.text.trim();
