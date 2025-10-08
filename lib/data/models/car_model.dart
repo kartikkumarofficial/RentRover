@@ -10,6 +10,9 @@ class CarModel {
   final int seats;
   final double latitude;
   final double longitude;
+  final String model;
+  final String ownerName;
+  final String ownerImage;
 
   CarModel({
     required this.id,
@@ -23,24 +26,32 @@ class CarModel {
     required this.seats,
     required this.latitude,
     required this.longitude,
+    required this.model,
+    required this.ownerName,
+    required this.ownerImage,
   });
 
   factory CarModel.fromMap(Map<String, dynamic> map) {
     return CarModel(
       id: map['id'] as String,
       name: map['name'] as String,
-      description: map['description'] as String,
-      imageUrl: (map['images'] as List).isNotEmpty ? map['images'][0] : '',
-      pricePerDay: (map['price_per_day'] as num).toDouble(),
-      location: map['location'] as String,
-      fuelCapacity: (map['fuelCapacity'] as num).toDouble(),
+      description: map['description'] ?? '',
+      imageUrl: (map['images'] != null && (map['images'] as List).isNotEmpty)
+          ? map['images'][0]
+          : '',
+      pricePerDay: (map['price_per_day'] ?? 0).toDouble(),
+      location: map['location'] ?? '',
+      fuelCapacity: (map['fuelCapacity'] ?? 0).toDouble(),
       transmission: map['transmission'] ?? 'Auto',
       seats: map['seats'] ?? 5,
-
-
-      latitude: (map['latitude'] != null) ? (map['latitude'] as num).toDouble() : 30.3165,
-      longitude: (map['longitude'] != null) ? (map['longitude'] as num).toDouble() : 78.0322,
+      latitude:
+      (map['latitude'] != null) ? (map['latitude'] as num).toDouble() : 30.3165,
+      longitude:
+      (map['longitude'] != null) ? (map['longitude'] as num).toDouble() : 78.0322,
+      model: map['model'] ?? 'Unknown',
+      ownerName: map['owner_name'] ?? 'RentRover Fleet',
+      ownerImage: map['owner_image'] ??
+          'https://api.dicebear.com/7.x/initials/png?seed=RentRover',
     );
   }
-
 }

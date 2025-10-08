@@ -23,7 +23,7 @@ class CarController extends GetxController {
           .toList();
       cars.assignAll(carList);
     } catch (e) {
-      Get.snackbar('Error', 'Failed to fetch cars');
+      Get.snackbar('Error', '7Failed to fetch cars');
     } finally {
       isLoading.value = false;
     }
