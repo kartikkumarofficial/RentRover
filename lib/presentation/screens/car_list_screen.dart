@@ -6,9 +6,14 @@ import 'package:rentrover/controllers/user_controller.dart';
 import 'package:rentrover/presentation/widgets/car_card.dart';
 import 'package:rentrover/controllers/auth_controller.dart';
 
-class CarListScreen extends StatelessWidget {
+class CarListScreen extends StatefulWidget {
   CarListScreen({super.key});
 
+  @override
+  State<CarListScreen> createState() => _CarListScreenState();
+}
+
+class _CarListScreenState extends State<CarListScreen> {
   final CarController carController = Get.put(CarController());
 
   final AuthController authController = Get.find<AuthController>();
@@ -16,9 +21,15 @@ class CarListScreen extends StatelessWidget {
   final UserController userController = Get.find<UserController>();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    userController.fetchUserProfile();
+  }
+  @override
   Widget build(BuildContext context) {
 
-    final String username = authController.nameController.text.trim();
+    final String username = userController.userName.trim();
 
     return Scaffold(
 
@@ -52,14 +63,16 @@ class CarListScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Hey, ${username} 👋',
+                                    'Hey, ${userController.userName.value.isNotEmpty
+                              ? userController.userName.value
+                                  : 'Guest User'} 👋',
                                     style: GoogleFonts.inter(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black87,
                                     ),
                                   ),
-                                  const SizedBox(height: 6),
+                                  const SizedBox(height: 5),
                                   const Text(
                                     'Ready for your next ride?',
                                     style: TextStyle(

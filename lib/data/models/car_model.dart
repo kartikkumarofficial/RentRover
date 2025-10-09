@@ -49,7 +49,7 @@ class CarModel {
       longitude:
       (map['longitude'] != null) ? (map['longitude'] as num).toDouble() : 78.0322,
       model: map['model'] ?? 'Unknown',
-      ownerName: map['owner_name'] ?? 'RentRover Fleet',
+      ownerName: map['owner_name'] ?? 'Anonymous',
       ownerImage: map['owner_image'] ??
           'https://api.dicebear.com/7.x/initials/png?seed=RentRover',
     );

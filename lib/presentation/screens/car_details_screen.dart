@@ -1,5 +1,5 @@
   import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
   import 'package:get/get.dart';
   import 'package:google_fonts/google_fonts.dart';
   import 'package:rentrover/controllers/car_controller.dart';
@@ -134,9 +134,9 @@ import 'package:flutter/material.dart';
                   children: [
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.all(20),
+                        padding:  EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: const Color(0xffF3F3F3),
+                          color:  Color(0xffF3F3F3),
                           borderRadius: BorderRadius.circular(20),
                           boxShadow: [
                             BoxShadow(
@@ -147,14 +147,16 @@ import 'package:flutter/material.dart';
                           ],
                         ),
                         child: Column(
-                          children: const [
+                          children:  [
                             CircleAvatar(
+
                               radius: 40,
-                              backgroundImage: AssetImage('assets/user.png'),
+                              // backgroundImage: AssetImage('assets/user.png'),
+                              backgroundImage: NetworkImage(widget.car.ownerImage),
                             ),
                             SizedBox(height: 10),
-                            Text('Jane Cooper', style: TextStyle(fontWeight: FontWeight.bold)),
-                            Text('\$4,253', style: TextStyle(color: Colors.grey)),
+                            Text(widget.car.ownerName, style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text(widget.car.location, style: TextStyle(color: Colors.grey)),
                           ],
                         ),
                       ),
@@ -250,7 +252,7 @@ import 'package:flutter/material.dart';
                           _featureTile(Icons.event_seat, "Seats", "${widget.car.seats}"),
                           _featureTile(Icons.place, "Location", widget.car.location),
                           _featureTile(Icons.currency_rupee, "Per Day", "₹${widget.car.pricePerDay.toStringAsFixed(0)}"),
-                          _featureTile(Icons.currency_rupee, "Per Day", "₹${widget.car.pricePerDay.toStringAsFixed(0)}"),
+                          _featureTile(Icons.directions_car_filled, "Model", "${widget.car.model}"),
                         ],
                       ),
                     ),

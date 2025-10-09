@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rentrover/data/models/car_model.dart';
 import 'package:rentrover/presentation/screens/car_details_screen.dart';
@@ -39,8 +40,9 @@ class CarCard extends StatelessWidget {
 
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                car.imageUrl,
+              child: CachedNetworkImage(
+                imageUrl: car.imageUrl,
+
                 height: 130,
                 width: double.infinity,
                 fit: BoxFit.cover,
@@ -64,7 +66,7 @@ class CarCard extends StatelessWidget {
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.deepPurpleAccent,
+                    color: Colors.purple,
                   ),
                 ),
               ],
@@ -80,10 +82,10 @@ class CarCard extends StatelessWidget {
                   child: Row(
                     children: [
                       const Icon(Icons.location_on, color: Colors.green, size: 18),
-                      const SizedBox(width: 4),
+                      // const SizedBox(width: 4),
                       Flexible(
                         child: Text(
-                          car.location,
+                            car.location.split(' ')[0],
                           style: const TextStyle(fontSize: 13, color: Colors.black54),
                           overflow: TextOverflow.ellipsis,
                         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentrover/controllers/auth_controller.dart';
@@ -25,18 +26,16 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: () => Get.to(null),
-              child: Text(
-                'RentRover',
-                style: GoogleFonts.pacifico(
-                  fontSize: 40,
-                  color: Colors.black,
-                ),
+            Text(
+              'RentRover',
+              style: GoogleFonts.pacifico(
+                fontSize: 50,
+                color: Colors.black,
               ),
             ),
             const SizedBox(height: 40),
             TextField(
+
               controller: authController.emailController,
               keyboardType: TextInputType.emailAddress,
               style: const TextStyle(color: Colors.black),
@@ -129,11 +128,12 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 socialLoginButton('assets/auth/google.png', () {}),
-                socialLoginButton('assets/auth/facebook.png', () {}),
-                socialLoginButton('assets/auth/apple.png', () {}),
+                socialLoginButton('assets/auth/facebook2.png', () {}),
+                socialLoginButton('assets/auth/apple2.png', () {}),
                 socialLoginButton('assets/auth/x.png', () {}),
               ],
             ),
+
           ],
         ),
       ),

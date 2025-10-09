@@ -38,7 +38,7 @@ Widget carDetailsCard({required CarModel car}) {
               children: [
                 const SizedBox(height: 10),
                 Text(
-                  car.name,
+                  car.name.split(' ').take(2).join(' '),
                   style: GoogleFonts.playfairDisplay(
                     fontSize: 26,
                     fontWeight: FontWeight.bold,
