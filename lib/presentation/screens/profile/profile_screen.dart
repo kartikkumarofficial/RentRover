@@ -14,7 +14,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final ThemeController themeController = Get.put(ThemeController());
+  final ThemeController themeController = Get.find<ThemeController>();
   final UserController userController = Get.find<UserController>();
 
   @override

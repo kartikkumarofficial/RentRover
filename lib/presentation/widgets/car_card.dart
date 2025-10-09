@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rentrover/data/models/car_model.dart';
 import 'package:rentrover/presentation/screens/car_details_screen.dart';
 
@@ -37,56 +38,58 @@ class CarCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
+            // Car image
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
                 imageUrl: car.imageUrl,
-
                 height: 130,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
             ),
-
             const SizedBox(height: 12),
 
-
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            // name and price row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   car.name,
-                  style: const TextStyle(
+                  style: GoogleFonts.playfairDisplay(
                     fontSize: 20,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
                   ),
                 ),
-                Text(textAlign: TextAlign.end,
+                Text(
                   '₹${car.pricePerDay.toStringAsFixed(0)}/day',
-                  style: const TextStyle(
+                  style: GoogleFonts.barlow(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: Colors.purple,
+                    color: Colors.grey[700], // soft grey
                   ),
                 ),
               ],
             ),
+            const SizedBox(height: 8),
 
-            // const SizedBox(height: 8),
-
-
+            // Feature Icons / Info Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Row(
                     children: [
-                      const Icon(Icons.location_on, color: Colors.green, size: 18),
-                      // const SizedBox(width: 4),
+                      Icon(Icons.location_on, color: Colors.grey[700], size: 18),
+                      const SizedBox(width: 4),
                       Flexible(
                         child: Text(
-                            car.location.split(' ')[0],
-                          style: const TextStyle(fontSize: 13, color: Colors.black54),
+                          car.location,
+                          style: GoogleFonts.barlow(
+                            fontSize: 13,
+                            color: Colors.grey[600],
+                          ),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -96,11 +99,14 @@ class CarCard extends StatelessWidget {
                 Expanded(
                   child: Row(
                     children: [
-                      const Icon(Icons.local_gas_station, color: Colors.red, size: 18),
+                      Icon(Icons.battery_charging_full, color: Colors.grey[700], size: 18),
                       const SizedBox(width: 4),
                       Text(
                         '${car.fuelCapacity} L',
-                        style: const TextStyle(fontSize: 13, color: Colors.black54),
+                        style: GoogleFonts.barlow(
+                          fontSize: 13,
+                          color: Colors.grey[600],
+                        ),
                       ),
                     ],
                   ),
@@ -108,11 +114,14 @@ class CarCard extends StatelessWidget {
                 Expanded(
                   child: Row(
                     children: [
-                      const Icon(Icons.settings, color: Colors.blueAccent, size: 18),
+                      Icon(Icons.settings, color: Colors.grey[700], size: 18),
                       const SizedBox(width: 4),
                       Text(
                         car.transmission,
-                        style: const TextStyle(fontSize: 13, color: Colors.black54),
+                        style: GoogleFonts.barlow(
+                          fontSize: 13,
+                          color: Colors.grey[600],
+                        ),
                       ),
                     ],
                   ),
@@ -120,23 +129,20 @@ class CarCard extends StatelessWidget {
                 Expanded(
                   child: Row(
                     children: [
-                      const Icon(Icons.event_seat, color: Colors.brown, size: 18),
+                      Icon(Icons.event_seat, color: Colors.grey[700], size: 18),
                       const SizedBox(width: 4),
                       Text(
                         '${car.seats} Seater',
-                        style: const TextStyle(fontSize: 13, color: Colors.black54),
+                        style: GoogleFonts.barlow(
+                          fontSize: 13,
+                          color: Colors.grey[600],
+                        ),
                       ),
                     ],
                   ),
                 ),
               ],
-            )
-
-
-
-
-
-
+            ),
           ],
         ),
       ),

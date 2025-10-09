@@ -277,7 +277,7 @@
               ),
             ),
             onPressed: () {
-              Get.to(BookingPage(carId: widget.car.id));
+              Get.to(BookingPage(car: widget.car));
             },
             child: const Text(
               "Book Now",

@@ -37,14 +37,20 @@ Widget carDetailsCard({required CarModel car}) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 10),
-                Text(
-                  car.name.split(' ').take(2).join(' '),
-                  style: GoogleFonts.playfairDisplay(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                SizedBox(
+                  width: Get.width * 0.44, // adjust as needed
+                  child: Text(
+                    car.name.split(' ').take(2).join(' '),
+                    style: GoogleFonts.playfairDisplay(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
+
                 const SizedBox(height: 8),
                 Row(
                   children: [
@@ -123,7 +129,7 @@ Widget carDetailsCard({required CarModel car}) {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        Get.to(BookingPage(carId: car.id));
+                        Get.to(BookingPage(car: car));
 
                       },
                       style: ElevatedButton.styleFrom(

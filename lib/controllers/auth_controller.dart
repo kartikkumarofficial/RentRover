@@ -90,7 +90,7 @@ class AuthController extends GetxController {
           'Welcome',
           'Logged in as ${response.user!.email} ',
           colorText: Colors.white,
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
         );
         Get.offAll(MainScaffold());
       } else {
