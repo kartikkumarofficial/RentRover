@@ -20,7 +20,7 @@ class AuthController extends GetxController {
     final confirmPassword = confirmPasswordController.text.trim();
 
     if (password != confirmPassword) {
-      Get.snackbar('Error', 'Passwords do not match', colorText: Colors.white);
+      Get.snackbar('Error', 'Passwords do not match', colorText: Colors.black);
       return;
     }
 
@@ -43,22 +43,23 @@ class AuthController extends GetxController {
               'https://api.dicebear.com/6.x/pixel-art/svg?seed=$email',
         });
         Get.snackbar(
+
           'Success',
           'Signed up as ${response.user!.email}, Confirm your email via the link in your inbox',
-          colorText: Colors.white,
+          colorText: Colors.black,
         );
         Get.offAll(LoginPage());
       } else {
         Get.snackbar(
           'Sign Up Failed',
           'Something went wrong. Try again.',
-          colorText: Colors.white,
+          colorText: Colors.black,
         );
       }
     } catch (e) {
       Get.snackbar(
         'Error',
-        colorText: Colors.white,
+        colorText: Colors.black,
         e.toString().replaceAll('Exception: ', ''),
       ); //just to make error snack bar smaller and more readable
     } finally {
@@ -73,7 +74,7 @@ class AuthController extends GetxController {
       Get.snackbar(
         'Error',
         'Email and password cannot be empty',
-        colorText: Colors.white,
+        colorText: Colors.black,
       );
       return;
     }
@@ -89,7 +90,8 @@ class AuthController extends GetxController {
         Get.snackbar(
           'Welcome',
           'Logged in as ${response.user!.email} ',
-          colorText: Colors.white,
+          
+          colorText: Colors.black,
           snackPosition: SnackPosition.TOP,
         );
         Get.offAll(MainScaffold());
@@ -97,14 +99,14 @@ class AuthController extends GetxController {
         Get.snackbar(
           'Login Failed',
           'Invalid Credentials',
-          colorText: Colors.white,
+          colorText: Colors.black,
         );
       }
     } catch (e) {
       Get.snackbar(
         'Error',
         e.toString().replaceAll('Exception', ''),
-        colorText: Colors.white,
+        colorText: Colors.black,
       );
     } finally {
       isLoading.value = false;

@@ -173,10 +173,9 @@ class BookingPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
 
-              SizedBox(height: 20),
+              SizedBox(height: Get.height*0.14),
 
 
-              //todo align this at bottom
               // bottom section total price and proceed to pay
               // total price card
               Align(

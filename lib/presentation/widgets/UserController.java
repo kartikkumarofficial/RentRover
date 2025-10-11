@@ -7,40 +7,37 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class UserController extends GetxController {
   final supabase = Supabase.instance.client;
 
+  // Basic Info
   var userName = ''.obs;
   var profileImageUrl = ''.obs;
   var email = ''.obs;
   var isLoading = false.obs;
-  var about = ''.obs;
 
-
-  // ===== New Stats =====
+  // New Stats
   var journeysTaken = 0.obs;
   var rating = 0.0.obs;
   var milesTraveled = 0.0.obs;
 
+  // Fetch user profile + stats
   Future<void> fetchUserProfile() async {
     try {
       isLoading.value = true;
       final user = supabase.auth.currentUser;
 
       if (user != null) {
-
         print('Logged-in User ID: ${user.id}');
-
         email.value = user.email ?? '';
 
         final response =
-        await supabase.from('users').select().eq('id', user.id).single();
+            await supabase.from('users').select().eq('id', user.id).single();
 
         print('User table response: $response');
 
         userName.value = response['username'] ?? 'username not provided';
-        profileImageUrl.value =
-            response['profile_image'] ??
-                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9oq8vhrZWuASFrhOqfj4rPD0H-UKzzK2_tQ&s';
+        profileImageUrl.value = response['profile_image'] ??
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9oq8vhrZWuASFrhOqfj4rPD0H-UKzzK2_tQ&s';
 
-        // ===== Fetch new stats =====
+        // ===== New Stats =====
         journeysTaken.value = response['journeys_taken'] ?? 0;
         rating.value = (response['rating'] ?? 0.0).toDouble();
         milesTraveled.value = (response['miles_traveled'] ?? 0.0).toDouble();
@@ -50,7 +47,7 @@ class UserController extends GetxController {
       Get.snackbar(
         'Error',
         'Failed to fetch user profile',
-        colorText: Colors.black,
+        colorText: Colors.white,
       );
     } finally {
       isLoading.value = false;
@@ -63,15 +60,14 @@ class UserController extends GetxController {
       if (user != null) {
         await supabase
             .from('users')
-            .update({'profile_image': url})
-            .eq('id', user.id);
+            .update({'profile_image': url}).eq('id', user.id);
         profileImageUrl.value = url;
       }
     } catch (e) {
       Get.snackbar(
         'Error',
         'Failed to update profile image',
-        colorText: Colors.black,
+        colorText: Colors.white,
       );
     }
   }
@@ -82,8 +78,7 @@ class UserController extends GetxController {
       if (user != null) {
         await supabase
             .from('users')
-            .update({'username': newName})
-            .eq('id', user.id);
+            .update({'username': newName}).eq('id', user.id);
         userName.value = newName;
       }
     } catch (e) {
