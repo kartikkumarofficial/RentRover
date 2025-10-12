@@ -8,7 +8,7 @@ Widget ProfileTile({
   return GestureDetector(
     onTap: onTap,
     child: Container(
-      margin:   EdgeInsets.only(bottom: 12),
+      margin:   EdgeInsets.only(bottom: 9),
       padding:   EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
         color: Colors.grey[900],
@@ -16,7 +16,7 @@ Widget ProfileTile({
       ),
       child: Row(
         children: [
-          Icon(icon, color: Colors.tealAccent),
+          Icon(icon, color: Colors.white),
           SizedBox(width: 16),
           Expanded(
             child: Text(

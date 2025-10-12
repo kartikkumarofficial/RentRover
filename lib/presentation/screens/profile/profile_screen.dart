@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rentrover/controllers/theme_controller.dart';
 import 'package:rentrover/presentation/screens/profile/edit_accountdetails_screen.dart';
+import 'package:rentrover/presentation/widgets/fadedDivider.dart';
 import '../../../controllers/user_controller.dart';
 import '../../widgets/profile_tile.dart';
+import '../../widgets/statCard.dart';
 
 class ProfileScreen extends StatefulWidget {
   ProfileScreen({super.key});
@@ -32,18 +34,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Stack(
           children: [
             Obx(() => userController.isLoading.value
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : ListView(
               children: [
                 const SizedBox(height: 45),
                 Center(
-                  child: CircleAvatar(
-                    radius: Get.width * 0.17,
-                    backgroundImage:
-                    userController.profileImageUrl.value.isNotEmpty
-                        ? NetworkImage(userController.profileImageUrl.value)
-                        : const AssetImage('assets/default_profile.png') as ImageProvider,
+                  child: Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(2.5), // space between image and border
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                      ),
+                      child: CircleAvatar(
+                        radius: Get.width * 0.18,
+                        backgroundImage: userController.profileImageUrl.value.isNotEmpty
+                            ? NetworkImage(userController.profileImageUrl.value)
+                            : const AssetImage('assets/default_profile.png') as ImageProvider,
+                      ),
+                    ),
                   ),
+
                 ),
                 const SizedBox(height: 16),
                 Center(
@@ -63,13 +77,137 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: GoogleFonts.barlow(color: Colors.grey[700]),
                   ),
                 ),
-                 SizedBox(height: Get.height*0.2),
+                const SizedBox(height: 28),
+
+
+
+
+                //floating stats section
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: Get.width*0.03),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Journeys Taken
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              userController.journeysTaken.value
+                                  .toString(),
+                              style: GoogleFonts.poppins(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 1),
+                            Text(
+                              "Journeys Taken",
+                              style: GoogleFonts.labrada(
+                                color: Colors.grey[600],
+                                fontSize: 13.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      FadedDividerVertical(),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              userController.rating.value
+                                  .toStringAsFixed(1),
+                              style: GoogleFonts.poppins(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 1),
+                            Text(
+                              "Rating",
+                              style: GoogleFonts.labrada(
+                                color: Colors.grey[600],
+                                fontSize: 13.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      FadedDividerVertical(),
+
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "${userController.milesTraveled.value.toInt()} ",
+                              style: GoogleFonts.poppins(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            const SizedBox(height: 1),
+                            Text(
+                              "Miles Traveled",
+                              style: GoogleFonts.labrada(
+                                color: Colors.grey[600],
+                                fontSize: 13.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 25),
+
+                FadedDividerHorizontal(),
+
+
+                // about me
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 24, vertical: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "About Me",
+                        style: GoogleFonts.barlow(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Obx(() => Text(
+                        userController.about.value.isNotEmpty
+                            ? userController.about.value
+                            : "No description added yet.",
+                        style: GoogleFonts.barlow(
+                          color: Colors.grey[700],
+                          fontSize: 15,
+                          height: 1.5,
+                        ),
+                      )),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                // account option
+
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: Get.width * 0.02),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // const SizedBox(height: ),
                       ProfileTile(
                         onTap: () async {
                           final result = await Get.to(() => EditAccountPage());
@@ -80,22 +218,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         icon: Icons.settings,
                         label: "Edit Account Details",
                       ),
-                      Obx(() => ProfileTile(
-                        icon: Icons.brightness_6,
-                        label: themeController.isDarkMode.value
-                            ? "Switch to Light Mode"
-                            : "Switch to Dark Mode",
-                        onTap: themeController.toggleTheme,
-                      )),
+
+
+                      // New Tiles
                       ProfileTile(
-                        icon: Icons.lock,
-                        label: "Security",
-                        onTap: () {},
+                        icon: Icons.help_outline,
+                        label: "Help & Support",
+                        onTap: () {
+
+                        },
+                      ),
+                      ProfileTile(
+                        icon: Icons.card_giftcard,
+                        label: "Refer & Earn",
+                        onTap: () {
+
+                        },
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 24),
+
+
+                // const SizedBox(height: 24),
+
                 TextButton.icon(
                   onPressed: () {
                     userController.logout();
@@ -106,14 +252,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: TextStyle(color: Colors.redAccent),
                   ),
                 ),
-                const SizedBox(height: 12),
+                // const SizedBox(height: 5),
                 Center(
                   child: Text(
                     "v1.0.0 • RentRover",
                     style: TextStyle(color: Colors.grey[500]),
                   ),
                 ),
-                // const SizedBox(height: 20),
               ],
             )),
           ],

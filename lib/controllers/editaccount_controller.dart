@@ -4,21 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rentrover/controllers/user_controller.dart';
 import 'package:rentrover/data/services/cloudinary_service.dart';
-
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EditAccountController extends GetxController {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
+  final aboutController = TextEditingController();
+
   final isLoading = false.obs;
   final selectedImage = Rxn<File>();
-
   final userController = Get.find<UserController>();
 
   @override
   void onInit() {
     nameController.text = userController.userName.value;
     emailController.text = userController.email.value;
+    aboutController.text = userController.about.value;
     super.onInit();
   }
 
@@ -31,21 +32,23 @@ class EditAccountController extends GetxController {
 
   Future<void> saveChanges() async {
     isLoading.value = true;
-
     try {
       String? imageUrl = userController.profileImageUrl.value;
       if (selectedImage.value != null) {
-        final uploadedUrl = await CloudinaryService.uploadImage(selectedImage.value!);
+        final uploadedUrl =
+        await CloudinaryService.uploadImage(selectedImage.value!);
         if (uploadedUrl != null) {
-          imageUrl = uploadedUrl; 
+          imageUrl = uploadedUrl;
         } else {
-          Get.snackbar('Error', 'Image upload failed',colorText: Colors.white);
+          Get.snackbar('Error', 'Image upload failed',
+              colorText: Colors.white);
           return;
         }
       }
 
       final name = nameController.text.trim();
       final email = emailController.text.trim();
+      final about = aboutController.text.trim();
       final user = Supabase.instance.client.auth.currentUser;
 
       if (user != null) {
@@ -53,23 +56,23 @@ class EditAccountController extends GetxController {
           'username': name,
           'email': email,
           'profile_image': imageUrl,
+          'about': about,
         }).eq('id', user.id);
-
 
         await Supabase.instance.client.auth.updateUser(
           UserAttributes(email: email),
         );
 
-
         userController.userName.value = name;
         userController.email.value = email;
         userController.profileImageUrl.value = imageUrl ?? '';
+        userController.about.value = about;
 
         Get.back();
-        Get.snackbar('Success', 'Profile updated',colorText: Colors.white);
+        Get.snackbar('Success', 'Profile updated', colorText: Colors.white);
       }
     } catch (e) {
-      Get.snackbar('Error', e.toString(),colorText: Colors.white,);
+      Get.snackbar('Error', e.toString(), colorText: Colors.white);
     } finally {
       isLoading.value = false;
     }
@@ -79,6 +82,7 @@ class EditAccountController extends GetxController {
   void onClose() {
     nameController.dispose();
     emailController.dispose();
+    aboutController.dispose();
     super.onClose();
   }
 }

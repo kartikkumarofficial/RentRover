@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,109 +8,181 @@ import '../../../controllers/editaccount_controller.dart';
 class EditAccountPage extends StatelessWidget {
   final accountController = Get.put(EditAccountController());
 
+  EditAccountPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 1,
+        elevation: 0.5,
         leading: IconButton(
           icon: const Icon(CupertinoIcons.back, color: Colors.black),
           onPressed: () => Get.back(result: true),
         ),
         title: Text(
-          'Edit Account',
-          style: GoogleFonts.playfairDisplay(
-            fontSize: 22,
+          'Edit Profile',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
             color: Colors.black,
           ),
         ),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
+      body: Obx(
+            () => SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          child: Obx(() => Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
-              GestureDetector(
-                onTap: accountController.pickImage,
-                child: CircleAvatar(
-                  radius: Get.width * 0.22,
-                  backgroundImage: accountController.selectedImage.value != null
-                      ? FileImage(accountController.selectedImage.value!)
-                      : accountController.userController.profileImageUrl.value.isNotEmpty
-                      ? NetworkImage(accountController.userController.profileImageUrl.value)
-                      : const AssetImage('assets/default_profile.png') as ImageProvider,
-                ),
+
+              // Profile Picture
+              Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  GestureDetector(
+                    onTap: accountController.pickImage,
+                    child: CircleAvatar(
+                      radius: Get.width * 0.18,
+                      backgroundColor: Colors.grey[200],
+                      backgroundImage:
+                      accountController.selectedImage.value != null
+                          ? FileImage(accountController.selectedImage.value!)
+                          : accountController
+                          .userController.profileImageUrl.value
+                          .isNotEmpty
+                          ? NetworkImage(accountController
+                          .userController.profileImageUrl.value)
+                          : const AssetImage(
+                          'assets/default_profile.png')
+                      as ImageProvider,
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 6,
+                    right: 6,
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.deepPurpleAccent,
+                        shape: BoxShape.circle,
+                      ),
+                      padding: const EdgeInsets.all(6),
+                      child: const Icon(
+                        Icons.edit,
+                        color: Colors.white,
+                        size: 16,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
-              buildTextField(
-                label: 'Name',
-                controller: accountController.nameController,
-              ),
-              const SizedBox(height: 20),
-              buildTextField(
-                label: 'Email',
-                controller: accountController.emailController,
-              ),
+
               const SizedBox(height: 30),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.deepPurpleAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
+
+              // Name Field
+              buildRoundedTextField(
+                label: "Full Name",
+                controller: accountController.nameController,
+                icon: CupertinoIcons.person,
+              ),
+              const SizedBox(height: 18),
+
+              // Email Field
+              buildRoundedTextField(
+                label: "Email",
+                controller: accountController.emailController,
+                icon: CupertinoIcons.mail,
+              ),
+              const SizedBox(height: 18),
+
+              // About Field
+              buildRoundedTextField(
+                label: "About",
+                controller: accountController.aboutController,
+                icon: null,
+                maxLines: 3,
+              ),
+
+              const SizedBox(height: 120),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          child: SizedBox(
+            width: double.infinity,
+            height: 52,
+            child: Obx(
+                  () => ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  onPressed: accountController.isLoading.value
-                      ? null
-                      : accountController.saveChanges,
-                  child: accountController.isLoading.value
-                      ? const CircularProgressIndicator(
-                      color: Colors.white, strokeWidth: 2.5)
-                      : Text(
-                    'Save Changes',
-                    style: GoogleFonts.barlow(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                    ),
+                ),
+                onPressed: accountController.isLoading.value
+                    ? null
+                    : accountController.saveChanges,
+                child: accountController.isLoading.value
+                    ? const CircularProgressIndicator(
+                    color: Colors.white, strokeWidth: 2.5)
+                    : Text(
+                  'SAVE CHANGES',
+                  style: GoogleFonts.poppins(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 1.1,
                   ),
                 ),
               ),
-            ],
-          )),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  Widget buildTextField({
+  // Custom Rounded Input Field
+  Widget buildRoundedTextField({
     required String label,
     required TextEditingController controller,
+    IconData? icon,
+    int maxLines = 1,
   }) {
     return TextField(
       controller: controller,
-      style: GoogleFonts.barlow(
+      maxLines: maxLines,
+      style: GoogleFonts.poppins(
         color: Colors.black,
-        fontSize: 16,
+        fontSize: 15.5,
       ),
       decoration: InputDecoration(
+        prefixIcon: icon != null
+            ? Icon(icon, color: Colors.grey[600], size: 20)
+            : null,
         labelText: label,
-        labelStyle: GoogleFonts.barlow(
-          color: Colors.grey[700],
-          fontSize: 15,
+        labelStyle: GoogleFonts.poppins(
+          color: Colors.grey[600],
+          fontSize: 14.5,
         ),
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
+        filled: true,
+        fillColor: Colors.grey[100],
+        contentPadding:
+        const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide.none,
         ),
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.deepPurpleAccent),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide:
+          const BorderSide(color: Colors.deepPurpleAccent, width: 1),
         ),
       ),
     );
