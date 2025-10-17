@@ -18,7 +18,7 @@ class EditAccountPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0.5,
         leading: IconButton(
-          icon: const Icon(CupertinoIcons.back, color: Colors.black),
+          icon:   Icon(CupertinoIcons.back, color: Colors.black),
           onPressed: () => Get.back(result: true),
         ),
         title: Text(
@@ -33,11 +33,11 @@ class EditAccountPage extends StatelessWidget {
       ),
       body: Obx(
             () => SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          padding:   EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
+                SizedBox(height: 20),
 
               // Profile Picture
               Stack(
@@ -56,7 +56,7 @@ class EditAccountPage extends StatelessWidget {
                           .isNotEmpty
                           ? NetworkImage(accountController
                           .userController.profileImageUrl.value)
-                          : const AssetImage(
+                          :   AssetImage(
                           'assets/default_profile.png')
                       as ImageProvider,
                     ),
@@ -65,12 +65,12 @@ class EditAccountPage extends StatelessWidget {
                     bottom: 6,
                     right: 6,
                     child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.deepPurpleAccent,
+                      decoration:   BoxDecoration(
+                        color: Colors.purple,
                         shape: BoxShape.circle,
                       ),
-                      padding: const EdgeInsets.all(6),
-                      child: const Icon(
+                      padding:   EdgeInsets.all(6),
+                      child:   Icon(
                         Icons.edit,
                         color: Colors.white,
                         size: 16,
@@ -80,7 +80,7 @@ class EditAccountPage extends StatelessWidget {
                 ],
               ),
 
-              const SizedBox(height: 30),
+                SizedBox(height: 30),
 
               // Name Field
               buildRoundedTextField(
@@ -88,7 +88,7 @@ class EditAccountPage extends StatelessWidget {
                 controller: accountController.nameController,
                 icon: CupertinoIcons.person,
               ),
-              const SizedBox(height: 18),
+                SizedBox(height: 18),
 
               // Email Field
               buildRoundedTextField(
@@ -96,7 +96,7 @@ class EditAccountPage extends StatelessWidget {
                 controller: accountController.emailController,
                 icon: CupertinoIcons.mail,
               ),
-              const SizedBox(height: 18),
+                SizedBox(height: 18),
 
               // About Field
               buildRoundedTextField(
@@ -106,14 +106,14 @@ class EditAccountPage extends StatelessWidget {
                 maxLines: 3,
               ),
 
-              const SizedBox(height: 120),
+                SizedBox(height: 120),
             ],
           ),
         ),
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding:   EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           child: SizedBox(
             width: double.infinity,
             height: 52,
@@ -129,7 +129,7 @@ class EditAccountPage extends StatelessWidget {
                     ? null
                     : accountController.saveChanges,
                 child: accountController.isLoading.value
-                    ? const CircularProgressIndicator(
+                    ?   CircularProgressIndicator(
                     color: Colors.white, strokeWidth: 2.5)
                     : Text(
                   'SAVE CHANGES',
@@ -174,7 +174,7 @@ class EditAccountPage extends StatelessWidget {
         filled: true,
         fillColor: Colors.grey[100],
         contentPadding:
-        const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide.none,
@@ -182,7 +182,7 @@ class EditAccountPage extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide:
-          const BorderSide(color: Colors.deepPurpleAccent, width: 1),
+            BorderSide(color: Colors.deepPurpleAccent, width: 1),
         ),
       ),
     );
