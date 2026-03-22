@@ -8,20 +8,19 @@ RentRover is a modern, full-featured car rental application built with Flutter a
 ## ✨ Features
 
 - 🔐 **Authentication**  
-  Sign up, log in, and manage user sessions via Supabase Auth.
+  Secure user authentication with Supabase Auth, including signup, login, and persistent session management.
 
 - 🚘 **Car Listings**  
-  Browse and view detailed car information including images, price per day, fuel capacity, and more.
+  Explore detailed car listings with images, pricing, specifications, and availability for an informed booking experience.
 
 - 📆 **Bookings**  
-  Create and manage bookings with start/end dates, live availability checks, and status tracking.
+  Seamlessly create and manage bookings with date selection, real-time availability validation, and status tracking.
 
 - 📡 **Real-time Data**  
-  All data—cars, bookings, and users—is synced with Supabase in real time.
+  Powered by Supabase for live synchronization of cars, bookings, and user data across the app.
 
 - 🎨 **Clean UI**  
-  Flutter-powered responsive interface with GetX for state management.
-
+  Modern, responsive Flutter interface with GetX for efficient state management and smooth navigation.
 ---
 
 ## 🗄️ Database Schema (Supabase)
