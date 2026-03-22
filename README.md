@@ -26,14 +26,26 @@ RentRover is a modern, full-featured car rental application built with Flutter a
 
 ## 🗄️ Database Schema (Supabase)
 
+<div style="display: flex; gap: 40px;">
+
+<div>
+
 ### Users
-| Field         | Type       |
-|---------------|------------|
-| id            | uuid (PK)  |
-| username      | text       |
-| email         | text       |
-| profile_image | text       |
-| created_at    | timestamptz|
+| Field           | Type        |
+|----------------|------------|
+| id             | uuid (PK)  |
+| username       | text       |
+| email          | text       |
+| profile_image  | text       |
+| created_at     | timestamptz|
+| journeys_taken | int4       |
+| rating         | numeric    |
+| miles_traveled | numeric    |
+| about          | text       |
+
+</div>
+
+<div>
 
 ### Cars
 | Field           | Type       |
@@ -41,7 +53,7 @@ RentRover is a modern, full-featured car rental application built with Flutter a
 | id              | uuid (PK)  |
 | name            | text       |
 | description     | text       |
-| images          | _text      |
+| images          | text[]     |
 | price_per_day   | float4     |
 | location        | text       |
 | is_available    | boolean    |
@@ -51,6 +63,14 @@ RentRover is a modern, full-featured car rental application built with Flutter a
 | seats           | int4       |
 | latitude        | float8     |
 | longitude       | float8     |
+| owner_name      | text       |
+| owner_image     | text       |
+| model           | text       |
+
+</div>
+
+</div>
+<div>
 
 ### Bookings
 | Field       | Type      |
@@ -63,8 +83,8 @@ RentRover is a modern, full-featured car rental application built with Flutter a
 | status      | text      |
 | created_at  | timestamp |
 
----
 
+</div>
 ## 🛠️ Tech Stack
 
 - **Flutter** – Cross-platform mobile development
@@ -79,7 +99,7 @@ RentRover is a modern, full-featured car rental application built with Flutter a
 ### Clone the repo
 ```
 
-git clone [https://github.com/yourusername/rentrover.git](https://github.com/yourusername/rentrover.git)
+git clone [https://github.com/kartikkumarofficial/RentRover](https://github.com/kartikkumarofficial/RentRover)
 cd rentrover
 
 ```
@@ -179,6 +199,6 @@ Pull requests and stars are welcome!
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 
