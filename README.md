@@ -134,10 +134,6 @@ flutter run
 lib/
  ├── bindings.dart                 # Initial bindings for GetX
  ├── controllers/
- │     ├── auth_controller.dart
- │     ├── user_controller.dart
- │     ├── current_bookings_controller.dart
- │
  ├── data/
  │     ├── local/                  # Local storage (Hive, SharedPreferences)
  │     ├── models/                 # Data models
@@ -145,10 +141,6 @@ lib/
  │
  ├── presentation/
  │     ├── screens/
- │     │     ├── auth/
- │     │     ├── car_details/
- │     │     ├── bookings/
- │     │     └── main_scaffold.dart
  │     └── widgets/
  │
  ├── utils/
